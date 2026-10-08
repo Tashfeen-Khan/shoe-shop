@@ -240,7 +240,7 @@ const cn = (...parts: Array<string | false | null | undefined>) => parts.filter(
 const money = (n: number) => `£${n.toFixed(2)}`;
 
 function Container({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8", className)}>{children}</div>;
+  return <div className={cn("mx-auto w-full max-w-310 px-4 sm:px-6 lg:px-8", className)}>{children}</div>;
 }
 
 function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -788,7 +788,7 @@ function Hero() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative mx-auto flex min-h-[460px] max-w-[1600px] items-center justify-center md:min-h-[540px]">
+      <div className="relative mx-auto flex min-h-115 max-w-[1600px] items-center justify-center md:min-h-135">
         <AnimatePresence mode="wait">
           <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="absolute inset-0">
             <div className="absolute inset-0">
@@ -798,7 +798,7 @@ function Hero() {
                 className="object-cover"
                 position="center"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#F7F2EA]/95 via-[#F7F2EA]/65 to-[#F7F2EA]/20" />
+              <div className="absolute inset-0 bg-linear-to-r from-[#F7F2EA]/95 via-[#F7F2EA]/65 to-[#F7F2EA]/20" />
             </div>
           </motion.div>
         </AnimatePresence>
@@ -869,16 +869,16 @@ function CategoryCard({ category: c }: { category: Category }) {
         "group relative flex h-full flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-black/5",
         "transition-all duration-500 ease-out will-change-transform",
         "hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.25)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent)",
         "motion-reduce:transition-none motion-reduce:hover:translate-y-0",
         featured
-          ? "min-h-[210px] sm:min-h-[240px] md:p-7 lg:min-h-[290px]"
-          : "min-h-[250px] sm:min-h-[270px] md:p-6 lg:min-h-[290px]"
+          ? "min-h-52.5 sm:min-h-60 md:p-7 lg:min-h-72.5"
+          : "min-h-62.5 sm:min-h-67.5 md:p-6 lg:min-h-72.5"
       )}
     >
       {/* ---------- Text block ---------- */}
       <div className={cn("relative z-10", featured ? "max-w-[55%]" : "max-w-full")}>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] md:text-xs">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--accent) md:text-xs">
           {c.eyebrow}
         </p>
  
@@ -900,7 +900,7 @@ function CategoryCard({ category: c }: { category: Category }) {
         {featured && (
           <span
             className={cn(
-              "mt-4 inline-flex items-center gap-2 rounded-md bg-[var(--accent)] px-4 py-2.5",
+              "mt-4 inline-flex items-center gap-2 rounded-md bg-(--accent) px-4 py-2.5",
               "text-[11px] font-semibold uppercase tracking-wider text-white md:text-xs",
               "transition-all duration-300 group-hover:gap-3 group-hover:shadow-lg"
             )}
@@ -918,7 +918,7 @@ function CategoryCard({ category: c }: { category: Category }) {
           className={cn(
             "absolute right-4 top-4 z-10 grid h-8 w-8 place-items-center rounded-full bg-white/80 text-[#2B2623]",
             "backdrop-blur transition-all duration-300 md:right-5 md:top-5 md:h-9 md:w-9",
-            "group-hover:bg-[var(--accent)] group-hover:text-white"
+            "group-hover:bg-(--accent) group-hover:text-white"
           )}
         >
           <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
@@ -1034,7 +1034,7 @@ function FeaturedCollection() {
                 </p>
                 <Button variant="maroon" className="mt-5">Shop the collection</Button>
               </div>
-              <div className="h-full min-h-[260px] overflow-hidden p-3 md:p-6">
+              <div className="h-full min-h-65 overflow-hidden p-3 md:p-6">
                 <RealImage src={SHOE_IMAGES.formal} alt="Heritage formal leather collection" className="rounded-lg" />
               </div>
             </div>
@@ -1066,7 +1066,7 @@ function FeaturedCollection() {
           {/* End-of-season tile */}
           <Reveal delay={0.12} className="grid place-items-center rounded-lg bg-[#4A0F14] p-8 text-center text-white">
             <div>
-              <p className={cn(display, "text-4xl font-semibold tracking-[0.1em]")}>SHOES</p>
+              <p className={cn(display, "text-4xl font-semibold tracking-widest")}>SHOES</p>
               <p className="mt-1 text-xs text-white/60">End of season</p>
               <p className={cn(serif, "my-3 text-5xl italic text-[#C29868]")}>-70%</p>
               <Button variant="tan">Shop offers</Button>
@@ -1129,7 +1129,7 @@ function BestSellers({ wishlist, onAdd, onWish }: ShelfProps) {
           ))}
         </div>
 
-        <div ref={track} className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
+        <div ref={track} className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 scrollbar-none sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
           <AnimatePresence mode="popLayout">
             {items.map((p) => (
               <motion.div
@@ -1182,7 +1182,7 @@ function WhyChooseUs() {
                 <Icon width={26} height={26} strokeWidth={1.5} />
               </motion.span>
               <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-[#4A0F14]">{title}</h3>
-              <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-[#6B645F]">{text}</p>
+              <p className="mt-2 max-w-55 text-xs leading-relaxed text-[#6B645F]">{text}</p>
             </li>
           ))}
         </ul>
@@ -1207,7 +1207,7 @@ function ProductSpotlight({ onAdd }: { onAdd: (p: Product) => void }) {
       <Container className="grid items-center gap-10 lg:grid-cols-2">
         <Reveal>
           <div className="rounded-xl bg-white p-8 shadow-[0_10px_30px_-12px_rgb(0_0_0/.15)]">
-            <motion.div animate={{ scale: [1, 1.015, 1] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="aspect-[4/3] overflow-hidden rounded-lg">
+            <motion.div animate={{ scale: [1, 1.015, 1] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="aspect-4/3 overflow-hidden rounded-lg">
               <RealImage src={SHOE_IMAGES.formal} alt="Stratford Oxford leather shoe" />
             </motion.div>
           </div>
@@ -1343,7 +1343,7 @@ function EditorialGuide() {
           {ARTICLES.map((a, n) => (
             <Reveal key={a.title} delay={n * 0.08}>
               <a href="#" className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9794A]">
-                <div className="aspect-[4/3] overflow-hidden rounded-lg bg-[#EDEDED]">
+                <div className="aspect-4/3 overflow-hidden rounded-lg bg-[#EDEDED]">
                   <RealImage
                     src={[SHOE_IMAGES.brown, SHOE_IMAGES.formal, SHOE_IMAGES.boots][n]}
                     alt={a.title}
@@ -1556,7 +1556,7 @@ export default function LandingPage() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className={cn(cinzel.variable, playfair.variable, inter.variable, "min-h-screen bg-white font-[family-name:var(--font-body)] text-[#1C1917] antialiased")}>
+      <div className={cn(cinzel.variable, playfair.variable, inter.variable, "min-h-screen bg-white font-(family-name:--font-body) text-[#1C1917] antialiased")}>
         <AnnouncementBar />
         <Header cartCount={cartCount} wishCount={wishlist.size} onCartClick={openCart} />
         <main>
