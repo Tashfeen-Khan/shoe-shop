@@ -303,55 +303,55 @@ function Button({
   );
 }
 
-function SocialIcon({
-  platform,
-  className,
-  width = 18,
-  height = 18,
-}: {
-  platform: "instagram" | "facebook" | "youtube";
-  className?: string;
-  width?: number;
-  height?: number;
-}) {
-  const sharedProps = {
-    className,
-    width,
-    height,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 2,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    "aria-hidden": true as const,
-  };
+// function SocialIcon({
+//   platform,
+//   className,
+//   width = 18,
+//   height = 18,
+// }: {
+//   platform: "instagram" | "facebook" | "youtube";
+//   className?: string;
+//   width?: number;
+//   height?: number;
+// }) {
+//   const sharedProps = {
+//     className,
+//     width,
+//     height,
+//     viewBox: "0 0 24 24",
+//     fill: "none",
+//     stroke: "currentColor",
+//     strokeWidth: 2,
+//     strokeLinecap: "round" as const,
+//     strokeLinejoin: "round" as const,
+//     "aria-hidden": true as const,
+//   };
 
-  if (platform === "instagram") {
-    return (
-      <svg {...sharedProps}>
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none" />
-      </svg>
-    );
-  }
+//   if (platform === "instagram") {
+//     return (
+//       <svg {...sharedProps}>
+//         <rect x="3" y="3" width="18" height="18" rx="5" />
+//         <circle cx="12" cy="12" r="4" />
+//         <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none" />
+//       </svg>
+//     );
+//   }
 
-  if (platform === "facebook") {
-    return (
-      <svg {...sharedProps} fill="currentColor" stroke="none">
-        <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.5v3h2.6v8h3.4Z" />
-      </svg>
-    );
-  }
+//   if (platform === "facebook") {
+//     return (
+//       <svg {...sharedProps} fill="currentColor" stroke="none">
+//         <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.5v3h2.6v8h3.4Z" />
+//       </svg>
+//     );
+//   }
 
-  return (
-    <svg {...sharedProps}>
-      <path d="M22 8.1a2.8 2.8 0 0 0-2-2C18.2 5.6 12 5.6 12 5.6s-6.2 0-8 .5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1.5 12a29 29 0 0 0 .5 3.9 2.8 2.8 0 0 0 2 2c1.8.5 8 .5 8 .5s6.2 0 8-.5a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .5-3.9 29 29 0 0 0-.5-3.9Z" />
-      <path d="m10 15 5-3-5-3v6Z" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
+//   return (
+//     <svg {...sharedProps}>
+//       <path d="M22 8.1a2.8 2.8 0 0 0-2-2C18.2 5.6 12 5.6 12 5.6s-6.2 0-8 .5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1.5 12a29 29 0 0 0 .5 3.9 2.8 2.8 0 0 0 2 2c1.8.5 8 .5 8 .5s6.2 0 8-.5a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .5-3.9 29 29 0 0 0-.5-3.9Z" />
+//       <path d="m10 15 5-3-5-3v6Z" fill="currentColor" stroke="none" />
+//     </svg>
+//   );
+// }
 
 function Stars({ value, size = 14 }: { value: number; size?: number }) {
   return (
@@ -1388,9 +1388,9 @@ function CommunityGallery() {
                   alt={`Customer shoe style ${n + 1}`}
                   className="transition-transform duration-700 group-hover:scale-110"
                 />
-                <span className="absolute inset-0 grid place-items-center bg-[#4A0F14]/70 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                {/* <span className="absolute inset-0 grid place-items-center bg-[#4A0F14]/70 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                   <SocialIcon platform="instagram" className="text-white" width={24} height={24} />
-                </span>
+                </span> */}
               </a>
             </li>
           ))}
@@ -1463,13 +1463,13 @@ function Footer() {
         <div>
           <p className={cn(display, "text-2xl font-semibold text-white")}>Shoes</p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed">Hand-finished leather shoes and boots from Northampton, delivered free across the UK on orders over £75.</p>
-          <div className="mt-5 flex gap-2">
+          {/* <div className="mt-5 flex gap-2">
             {socialLinks.map(({ label, platform }) => (
               <a key={label} href="#" aria-label={label} className="grid h-11 w-11 place-items-center rounded-full border border-white/20 transition hover:bg-white hover:text-[#4A0F14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C29868]">
                 <SocialIcon platform={platform} />
               </a>
             ))}
-          </div>
+          </div> */}
         </div>
         {FOOTER_COLUMNS.map((col) => (
           <nav key={col.title} aria-label={col.title}>
