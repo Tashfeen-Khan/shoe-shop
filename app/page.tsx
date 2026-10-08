@@ -1451,6 +1451,12 @@ function Newsletter() {
 ──────────────────────────────────────────────────────────────────────────── */
 
 function Footer() {
+  const socialLinks = [
+    { label: "Instagram", platform: "instagram" },
+    { label: "Facebook", platform: "facebook" },
+    { label: "YouTube", platform: "youtube" },
+  ] as const;
+
   return (
     <footer className="bg-[#2E080B] text-white/80">
       <Container className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
@@ -1458,11 +1464,7 @@ function Footer() {
           <p className={cn(display, "text-2xl font-semibold text-white")}>Shoes</p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed">Hand-finished leather shoes and boots from Northampton, delivered free across the UK on orders over £75.</p>
           <div className="mt-5 flex gap-2">
-            {[
-              { label: "Instagram", platform: "instagram" },
-              { label: "Facebook", platform: "facebook" },
-              { label: "YouTube", platform: "youtube" },
-            ].map(({ label, platform }) => (
+            {socialLinks.map(({ label, platform }) => (
               <a key={label} href="#" aria-label={label} className="grid h-11 w-11 place-items-center rounded-full border border-white/20 transition hover:bg-white hover:text-[#4A0F14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C29868]">
                 <SocialIcon platform={platform} />
               </a>
