@@ -1498,35 +1498,57 @@ function Footer() {
     <footer className="bg-[#2E080B] text-white/80">
       <Container className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <p className={cn(display, "text-2xl font-semibold text-white")}>Shoes</p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed">Hand-finished leather shoes and boots from Northampton, delivered free across the UK on orders over £75.</p>
-          {/* <div className="mt-5 flex gap-2">
-            {socialLinks.map(({ label, platform }) => (
-              <a key={label} href="#" aria-label={label} className="grid h-11 w-11 place-items-center rounded-full border border-white/20 transition hover:bg-white hover:text-[#4A0F14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C29868]">
-                <SocialIcon platform={platform} />
-              </a>
-            ))}
-          </div> */}
+          <p className={cn(display, "text-2xl font-semibold text-white")}>
+            Shoes
+          </p>
+
+          <p className="mt-3 max-w-xs text-sm leading-relaxed">
+            Hand-finished leather shoes and boots from Northampton, delivered
+            free across the UK on orders over £75.
+          </p>
+
+          {/* Social icons can be enabled later */}
         </div>
+
         {FOOTER_COLUMNS.map((col) => (
           <nav key={col.title} aria-label={col.title}>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white">{col.title}</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white">
+              {col.title}
+            </h3>
+
             <ul className="mt-4 space-y-2.5 text-sm">
               {col.links.map((l) => (
                 <li key={l}>
-                  <a href="#" className="transition-colors hover:text-[#C29868]">{l}</a>
+                  <a
+                    href="#"
+                    className="transition-colors hover:text-[#C29868]"
+                  >
+                    {l}
+                  </a>
                 </li>
               ))}
             </ul>
           </nav>
         ))}
       </Container>
+
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-4 py-6 text-xs md:flex-row">
-          <p>© {new Date().getFullYear()} Shoes Ltd. All rights reserved.</p>
-          <ul className="flex flex-wrap justify-center gap-2" aria-label="Accepted payment methods">
+          
+          {/* Fixed year prevents prerender/hydration issues */}
+          <p>© 2026 Shoes Ltd. All rights reserved.</p>
+
+          <ul
+            className="flex flex-wrap justify-center gap-2"
+            aria-label="Accepted payment methods"
+          >
             {PAYMENTS.map((p) => (
-              <li key={p} className="rounded border border-white/20 px-2.5 py-1 text-[10px] uppercase tracking-wider">{p}</li>
+              <li
+                key={p}
+                className="rounded border border-white/20 px-2.5 py-1 text-[10px] uppercase tracking-wider"
+              >
+                {p}
+              </li>
             ))}
           </ul>
         </Container>
