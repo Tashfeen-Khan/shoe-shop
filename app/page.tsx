@@ -499,25 +499,56 @@ function ProductCard({
 }
 
 function Countdown({ days = 3 }: { days?: number }) {
-  const [target] = useState(() => Date.now() + days * 86_400_000);
+  const [target, setTarget] = useState<number | null>(null);
   const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
-    setNow(Date.now());
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
+    const start = Date.now();
+    const end = start + days * 86_400_000;
 
-  const diff = now === null ? days * 86_400_000 : Math.max(0, target - now);
+    setTarget(end);
+    setNow(start);
+
+    const id = window.setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+
+    return () => window.clearInterval(id);
+  }, [days]);
+
+  // Important:
+  // During server prerender we use a static value.
+  // Date.now() only runs after the component mounts in the browser.
+  const diff =
+    target !== null && now !== null
+      ? Math.max(0, target - now)
+      : days * 86_400_000;
+
   const parts = [
-    { label: "Days", v: Math.floor(diff / 86_400_000) },
-    { label: "Hrs", v: Math.floor((diff / 3_600_000) % 24) },
-    { label: "Min", v: Math.floor((diff / 60_000) % 60) },
-    { label: "Sec", v: Math.floor((diff / 1000) % 60) },
+    {
+      label: "Days",
+      v: Math.floor(diff / 86_400_000),
+    },
+    {
+      label: "Hrs",
+      v: Math.floor((diff / 3_600_000) % 24),
+    },
+    {
+      label: "Min",
+      v: Math.floor((diff / 60_000) % 60),
+    },
+    {
+      label: "Sec",
+      v: Math.floor((diff / 1000) % 60),
+    },
   ];
 
   return (
-    <div className="inline-flex items-center gap-3 rounded-full bg-[#4A0F14] px-5 py-2.5 text-white" role="timer" aria-label="Offer ends in">
+    <div
+      className="inline-flex items-center gap-3 rounded-full bg-[#4A0F14] px-5 py-2.5 text-white"
+      role="timer"
+      aria-label="Offer ends in"
+    >
       {parts.map((p, i) => (
         <div key={p.label} className="flex items-baseline gap-1.5">
           <span className="relative inline-block h-6 w-7 overflow-hidden text-center text-lg font-semibold tabular-nums">
@@ -534,8 +565,14 @@ function Countdown({ days = 3 }: { days?: number }) {
               </motion.span>
             </AnimatePresence>
           </span>
-          <span className="text-[10px] uppercase tracking-wider text-white/60">{p.label}</span>
-          {i < parts.length - 1 && <span className="ml-1 text-white/30">|</span>}
+
+          <span className="text-[10px] uppercase tracking-wider text-white/60">
+            {p.label}
+          </span>
+
+          {i < parts.length - 1 && (
+            <span className="ml-1 text-white/30">|</span>
+          )}
         </div>
       ))}
     </div>
